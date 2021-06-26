@@ -1,16 +1,22 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import sys
 
 def main():
     print('Welcome to Grajin!\nA CLI based graph generator.\n')
     print("Which type of graph would you like?")
-    print('1. Bar Graph\n2. Line Chart\n3. Histogram\n4. Pie Chart')
+    print('1. Bar Graph\n2. Line Chart\n3. Pie Chart')
+    print('0. Quit')
     graph_type = input("Enter your choice- ")
     if int(graph_type) == 1:
         bar_plot()
     elif int(graph_type) == 2:
         line_plot()
+    elif int(graph_type) == 3:
+        pie_plot()
+    elif int(graph_type) == 0:
+        sys.exit()
     else:
         pass
 
@@ -85,8 +91,19 @@ def line_plot():
     plt.legend()
     print("Here's your graph")
     plt.show()
-        
 
-
+def pie_plot():
+    categories = input("Enter categories(comma separated): ")
+    labels = categories.strip().strip(',').split(',')
+    sizes=[]
+    for i in labels:
+        size = input('Enter size for '+i+' category: ')
+        try:
+            sizes.append(float(size))
+        except ValueError:
+            print("Not a Number")
+    plt.pie(sizes, labels = labels)
+    plt.show()
+      
 if __name__ == '__main__':
     main()

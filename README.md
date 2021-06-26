@@ -1,1 +1,3 @@
 # Grajin
+
+Grajin generates graphs!

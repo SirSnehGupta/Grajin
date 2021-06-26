@@ -1,4 +1,6 @@
 import matplotlib.pyplot as plt
+import pandas as pd
+import numpy as np
 
 def main():
     print('Welcome to Grajin!\nA CLI based graph generator.\n')
@@ -11,7 +13,7 @@ def main():
         pass
 
 def bar_plot():
-    bar_type = input("What type of bar graph would  you like to create?\n1. Default\n2.Double\n--> ")
+    bar_type = input("What type of bar graph would you like to create?\n1. Single\n2. Double\n--> ")
     if int(bar_type) == 1:
         x_raw = input("Enter comma separated values for X Axis: ")
         y_raw = input("Enter comma separated values for Y Axis: ")
@@ -26,14 +28,42 @@ def bar_plot():
         xlb = input('Label for X Axis: ')
         ylb = input('Label for Y Axis: ')
         title = input('Title for the plot: ')
-        plt.bar(x,y)
+        plt.bar(x, y)
         plt.xlabel(xlb)
         plt.ylabel(ylb)
         plt.title(title)
         print("Here's your graph")
         plt.show()
-    else:
-        pass
+    elif int(bar_type) == 2:
+        x_raw = input("Enter comma separated values for X Axis(common set): ")
+        y_raw = input("Enter comma separated values for Y Axis(1st set): ")
+        y_raw2 = input("Enter comma separated values for Y Axis(2nd set): ")
+        x = np.arange(len(x_raw.split()))
+
+        y = pd.Series(y_raw.split(), dtype = int)
+        y2 = pd.Series(y_raw2.split(), dtype = int)
+        legend = input('Enable Legend?[Y/n] ')
+        if legend.lower() == 'y' or legend == '':
+            lb1 = input('Label for 1st set: ')
+            lb2 = input('Label for 2st set: ')
+            plt.bar(x-0.2, y, width = 0.4, label = lb1)
+            plt.bar(x+0.2, y2, width = 0.4, label = lb2)
+        else:
+            plt.bar(x-0.2, y, width = 0.4)
+            plt.bar(x+0.2, y2, width = 0.4)
+        plt.xticks(x, x_raw.split())
+        xlb = input('Label for X Axis: ')
+        ylb = input('Label for Y Axis: ')
+        title = input('Title for the plot: ')
+        plt.xlabel(xlb)
+        plt.ylabel(ylb)
+        plt.title(title)
+        plt.legend()
+        print("Here's your graph")
+        plt.show()
+        
+def line_chart():
+    pass
 
 if __name__ == '__main__':
     main()

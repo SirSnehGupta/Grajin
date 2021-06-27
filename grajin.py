@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 import sys
 
+print('Welcome to Grajin!\nA CLI based graph generator.')
 def main():
-    print('Welcome to Grajin!\nA CLI based graph generator.\n')
-    print("Which type of graph would you like?")
+    print("\nWhich type of graph would you like?")
     print('1. Bar Graph\n2. Line Chart\n3. Pie Chart')
     print('0. Quit')
     graph_type = input("Enter your choice- ")
@@ -109,6 +109,7 @@ def bar_plot():
         plt.legend()
         print("Here's your graph")
         plt.show()
+    main()
         
 def line_plot():
     cust = input("Customise plot?[Y/n] ")
@@ -154,19 +155,39 @@ def line_plot():
     plt.legend()
     print("Here's your graph")
     plt.show()
+    main()
 
 def pie_plot():
+    cust = input("Customise plot?[Y/n] ")
     categories = input("Enter categories(comma separated): ")
     labels = categories.strip().strip(',').split(',')
     sizes=[]
+    colrs=[]
     for i in labels:
         size = input('Enter size for '+i+' category: ')
+        if cust.lower() == 'y' or cust == '':
+            color = input("Choose from the following colors:\nBlue[b]\nCyan[c]\nGreen[g]\nBlack[k]\nMagenta[m]\nRed[r]\nWhite[w]\nYellow[y]\nEnter color code --> ")
+            colrs.append(color)
+            
         try:
             sizes.append(float(size))
         except ValueError:
             print("Not a Number")
-    plt.pie(sizes, labels = labels)
+
+    if cust.lower() == 'y' or cust == '':
+        shad = input("Enable shadow?[Y/n] ")
+        if shad.lower() == 'y' or shad == '':
+            shad = True
+        else:
+            shad = False
+        try:
+            plt.pie(sizes, labels = labels, colors = colrs, shadow = shad)
+        except ValueError:
+            plt.pie(sizes, labels = labels)
+    else:    
+        plt.pie(sizes, labels = labels)
     plt.show()
+    main()
       
 if __name__ == '__main__':
     main()

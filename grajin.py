@@ -5,13 +5,13 @@ import sys
 import time
 import os
 
-print('Welcome to Grajin!\nA CLI based graph generator.')
 def clear():
     if os.name == 'nt':
         os.system('cls')
     else:
         os.system('clear')
 def main():
+    print('Welcome to Grajin!\nA CLI based graph generator.')
     print("\nWhich type of graph would you like?")
     print('1. Bar Graph\n2. Line Chart\n3. Pie Chart')
     print('0. Quit')

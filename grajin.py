@@ -2,8 +2,15 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import sys
+import time
+import os
 
 print('Welcome to Grajin!\nA CLI based graph generator.')
+def clear():
+    if os.name == 'nt':
+        os.system('cls')
+    else:
+        os.system('clear')
 def main():
     print("\nWhich type of graph would you like?")
     print('1. Bar Graph\n2. Line Chart\n3. Pie Chart')
@@ -54,8 +61,10 @@ def bar_plot():
         plt.xlabel(xlb)
         plt.ylabel(ylb)
         plt.title(title)
-        print("Here's your graph")
+        print("Your graph has been opened in a new window, you can save it from there")
+        time.sleep(1.5)
         plt.show()
+
     elif int(bar_type) == 2:
         x_raw = input("Enter comma separated values for X Axis(common set): ")
         y_raw = input("Enter comma separated values for Y Axis(1st set): ")
@@ -107,8 +116,10 @@ def bar_plot():
         plt.ylabel(ylb)
         plt.title(title)
         plt.legend()
-        print("Here's your graph")
+        print("Your graph has been opened in a new window, you can save it from there")
+        time.sleep(1.5)
         plt.show()
+    clear()
     main()
         
 def line_plot():
@@ -153,8 +164,10 @@ def line_plot():
     plt.ylabel(ylb)
     plt.title(title)
     plt.legend()
-    print("Here's your graph")
+    print("Your graph has been opened in a new window, you can save it from there")
+    time.sleep(1.5)
     plt.show()
+    clear()
     main()
 
 def pie_plot():
@@ -186,7 +199,10 @@ def pie_plot():
             plt.pie(sizes, labels = labels)
     else:    
         plt.pie(sizes, labels = labels)
+    print("Your graph has been opened in a new window, you can save it from there")
+    time.sleep(1.5)
     plt.show()
+    clear()
     main()
       
 if __name__ == '__main__':
